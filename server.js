@@ -4,6 +4,8 @@ const server = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 
+const sequelize = require("./utils/database");
+
 //Middle ware setups
 server.use(express.static("public"));
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +30,10 @@ server.use("/", homeRoute);
 server.use("/posts", postRoute);
 server.use("/", detailRoute);
 
-server.listen(5000, () => {
-  console.log("server is running on port 5000");
-});
+sequelize
+  .sync()
+  .then((result) => {
+    console.log(result);
+    server.listen(5000);
+  })
+  .catch((err) => console.log(err));
