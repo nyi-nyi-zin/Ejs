@@ -1,0 +1,15 @@
+<%- include('./includes/head') %>
+<a
+  href="./
+    "
+  >Back To Home Page</a
+>
+<h1>Welcome From Post Page</h1>
+
+<% for(let post of postsArr) { %>
+<section class="post-result">
+  <h1><%= post.title %></h1>
+
+  <a href="./posts/<%= post.id %>">Show Detail</a>
+</section>
+<% } %> <%- include('./includes/foot') %>

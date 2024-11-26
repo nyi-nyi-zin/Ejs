@@ -1,0 +1,43 @@
+.post-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.title-box {
+  padding-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+}
+
+input,
+textarea {
+  font-size: 18px;
+  padding: 4px 10px;
+}
+
+.post-result {
+  border: 1px solid black;
+  margin: 0 40px;
+  height: 50%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.detail-desc {
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+<%- include('./includes/head') %>
+<h1>Detail Page</h1>
+<a href="/">Go Back Home</a>
+<section class="post-result">
+  <h1 class="detail-title"><%= post.title %></h1>
+  <img src="<%= post.photo %>" alt="photo" />
+  <p class="detail-desc"><%= post.description %></p>
+</section>
+
+<%- include('./includes/foot') %>
