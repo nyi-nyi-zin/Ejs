@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 
 const sequelize = require("../utils/database");
 
+//Defines the structure of a Post in the database
 const Post = sequelize.define("post", {
   id: {
     type: Sequelize.INTEGER,
