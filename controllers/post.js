@@ -19,7 +19,7 @@ exports.createPost = (req, res) => {
     .then((result) => {
       console.log(result);
       console.log("New Post created");
-      res.redirect("/posts");
+      res.redirect("/");
     })
     .catch((err) => console.log(err));
 };
@@ -42,5 +42,21 @@ exports.postDetail = (req, res) => {
   const postId = req.params.postId;
   Post.findByPk(postId)
     .then((post) => res.render("detail", { title: "Detail Page", post }))
+    .catch((err) => console.log(err));
+};
+
+exports.deletePost = (req, res) => {
+  const postId = req.params.postId;
+  Post.findByPk(postId)
+    .then((post) => {
+      if (!post) {
+        res.redirect("/");
+      }
+      return post.destroy();
+    })
+    .then((result) => {
+      console.log("Post Deleted!");
+      res.redirect("/");
+    })
     .catch((err) => console.log(err));
 };

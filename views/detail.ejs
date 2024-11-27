@@ -5,6 +5,10 @@
   <h1 class="detail-title"><%= post.title %></h1>
   <img src="<%= post.imgUrl %>" alt="photo" />
   <p class="detail-desc"><%= post.description %></p>
+
+  <form action="/admin/posts/<%= post.id %>" method="post">
+    <button>Delete Post</button>
+  </form>
 </section>
 
 <%- include('./includes/foot') %>
