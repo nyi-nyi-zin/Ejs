@@ -11,7 +11,7 @@ const Post = sequelize.define("post", {
     primaryKey: true,
   },
   title: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   description: {

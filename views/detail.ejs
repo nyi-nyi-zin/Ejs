@@ -9,6 +9,7 @@
   <form action="/admin/posts/<%= post.id %>" method="post">
     <button>Delete Post</button>
   </form>
+  <a href="/admin/post-edit/<%= post.id %>">Update Post</a>
 </section>
 
 <%- include('./includes/foot') %>
