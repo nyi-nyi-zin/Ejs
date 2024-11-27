@@ -12,11 +12,12 @@ exports.renderCreatePostPage = (req, res) => {
 exports.createPost = (req, res) => {
   const { title, description, photo } = req.body;
   //Uses Post.create() to save a new post to the database
-  Post.create({
-    title,
-    description,
-    imgUrl: photo,
-  })
+  req.user
+    .createPost({
+      title,
+      description,
+      imgUrl: photo,
+    })
     .then((result) => {
       console.log(result);
       console.log("New Post created");

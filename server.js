@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 
 const sequelize = require("./utils/database");
 
+const Post = require("./models/post");
+const User = require("./models/user");
+
 //Import routes
 const postRoute = require("./routes/posts");
 const adminRoute = require("./routes/admin");
@@ -19,6 +22,15 @@ server.use(express.static(path.join(__dirname, "public")));
 server.use("/posts", (req, res, next) => {
   console.log("i am parent middleware");
   next();
+});
+
+server.use((req, res, next) => {
+  User.findByPk(1)
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
 });
 
 server.use((req, res, next) => {
@@ -41,10 +53,25 @@ server.set("view engine", "ejs");
 server.use("/admin", adminRoute);
 server.use(postRoute);
 
+Post.belongsTo(User, {
+  constraints: true,
+  onDelete: "CASCADE",
+});
+User.hasMany(Post);
+
 sequelize
   .sync()
   .then((result) => {
-    console.log(result);
+    return User.findByPk(1);
+  })
+  .then((user) => {
+    if (!user) {
+      return User.create({ name: "Miracle", email: "abcd@gmail.com" });
+    }
+    return user;
+  })
+  .then((user) => {
+    console.log(user);
     server.listen(5000);
   })
   .catch((err) => console.log(err));
